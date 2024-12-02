@@ -43,3 +43,17 @@ stages:
         testResultsFiles: '**/test-results.xml'  # Adjust the file path based on your Mocha reporter output
         testRunTitle: 'Mocha Test Results'
       displayName: 'Publish Test Results'
+
+- stage: Deploy
+  displayName: 'Deploy to Azure'
+  jobs:
+  - job: Deploy
+    displayName: 'Deploy Function to Azure'
+    pool:
+      vmImage: 'windows-latest'
+    steps:
+    - task: AzureFunctionApp@1
+      inputs:
+        azureSubscription: 'CICD'
+        appName: 'appfunction'
+        package: '$(Build.ArtifactStagingDirectory)/**/*.zip'
