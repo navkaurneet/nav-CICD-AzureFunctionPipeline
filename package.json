@@ -6,9 +6,14 @@
     "scripts": {
         "test": "mocha tests/*.js"
     },
-    "dependencies": {},
     "devDependencies": {
-        "chai": "^4.3.7",
-        "mocha": "^10.2.0"
-    }
+        "chai": "^4.5.0",
+        "mocha": "^10.8.2"
+    },
+    "directories": {
+        "test": "tests"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC"
 }
