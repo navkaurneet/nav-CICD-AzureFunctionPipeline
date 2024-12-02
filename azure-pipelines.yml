@@ -1,38 +1,45 @@
+# azure-pipelines.yml
+
 trigger:
-- main
+- main 
 
 pool:
-  vmImage: 'ubuntu-latest'
+  vmImage: 'ubuntu-latest'  
 
 stages:
 - stage: Build
   displayName: 'Build Stage'
   jobs:
-  - job: Build
-    displayName: 'Install and Build Dependencies'
+  - job: BuildJob
+    displayName: 'Install Dependencies'
     steps:
+    # Step 1: Install Node.js
     - task: NodeTool@0
       inputs:
-        versionSpec: '16.x'  # Ensure the correct version of Node.js is used
+        versionSpec: '16.x' 
       displayName: 'Install Node.js'
 
+    # Step 2: Install dependencies (including Mocha)
     - task: Npm@1
       inputs:
         command: 'install'
       displayName: 'Install dependencies'
 
-    - script: |
-        chmod +x node_modules/.bin/*  # Ensure permissions for Mocha
-        npm test                      # Run tests
-      displayName: 'Run Tests'
-
 - stage: Test
   displayName: 'Test Stage'
-  dependsOn: Build
+  dependsOn: Build  
   jobs:
-  - job: Test
-    displayName: 'Run Unit Tests'
+  - job: TestJob
+    displayName: 'Run Tests'
     steps:
+    # Step 3: Ensure permissions for Mocha and run tests
     - script: |
-        npm test
+        chmod +x node_modules/.bin/*  
+        npx mocha tests/*.js   
       displayName: 'Run Tests'
+
+    - task: PublishTestResults@2
+      inputs:
+        testResultsFiles: '**/test-results.xml'  # Adjust the file path based on your Mocha reporter output
+        testRunTitle: 'Mocha Test Results'
+      displayName: 'Publish Test Results'
