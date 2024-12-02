@@ -1,0 +1,14 @@
+{
+  "name": "azure-function-cicd",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "func start",
+    "test": "mocha tests/*.js"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "mocha": "^10.0.0",
+    "chai": "^4.3.0"
+  }
+}
