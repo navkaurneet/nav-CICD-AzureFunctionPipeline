@@ -1,14 +1,14 @@
 {
-  "name": "azure-function-cicd",
-  "version": "1.0.0",
-  "main": "index.js",
-  "scripts": {
-    "start": "func start",
-    "test": "mocha tests/*.js"
-  },
-  "dependencies": {},
-  "devDependencies": {
-    "mocha": "^10.0.0",
-    "chai": "^4.3.0"
-  }
+    "name": "azure-function-cicd",
+    "version": "1.0.0",
+    "description": "Azure Function with CI/CD Pipeline",
+    "main": "index.js",
+    "scripts": {
+        "test": "mocha tests/*.js"
+    },
+    "dependencies": {},
+    "devDependencies": {
+        "chai": "^4.3.7",
+        "mocha": "^10.2.0"
+    }
 }
